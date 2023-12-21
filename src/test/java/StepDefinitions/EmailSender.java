@@ -13,7 +13,7 @@ public class EmailSender {
         // Retrieve email and password from environment variables
         String senderEmail = System.getenv("SENDER_EMAIL");
         String senderPassword = System.getenv("SENDER_PASSWORD");
-        String recipientEmail = "myemail@example.com";
+        String recipientEmail = "s12112168@stu.najah.edu";
         if (senderEmail == null || senderPassword == null) {
             System.err.println("Sender email or password not provided in environment variables.");
             return;

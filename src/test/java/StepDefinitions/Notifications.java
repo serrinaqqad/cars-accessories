@@ -1,7 +1,7 @@
 package StepDefinitions;
 import io.cucumber.java.en.Then;
 
-public class Norifications {
+public class Notifications {
 	SystemUI mysystem = new SystemUI();
 
 	@Then("the customer should receive an order confirmation email")
