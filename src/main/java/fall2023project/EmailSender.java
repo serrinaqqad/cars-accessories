@@ -1,4 +1,4 @@
-package StepDefinitions;
+package fall2023project;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;

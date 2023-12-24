@@ -1,4 +1,4 @@
-package StepDefinitions;
+package fall2023project;
 
 public class Profile {
  User user;
