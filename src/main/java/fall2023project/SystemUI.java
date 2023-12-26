@@ -1,11 +1,13 @@
 package fall2023project;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 //import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class SystemUI {
     //admin screen
+	Logger logger = Logger.getLogger(getClass().getName());
     private Product sel;
     private List<Product> allproducts = new ArrayList<Product>();
     private List<Order> myorders = new ArrayList<Order>();
@@ -75,10 +77,10 @@ public class SystemUI {
     	availibleinstallers.add(i2);
     	}
     public void adminscreen() {
-    	System.out.println("\n--------- ADMIN'S PORTAL ------------");
-        System.out.println("1. Manage Products");
-        System.out.println("2. Categories");
-        System.out.println("3. Users");
+    	 logger.info("\n--------- ADMIN'S PORTAL ------------");
+    	 logger.info("1. Manage Products");
+    	 logger.info("2. Categories");
+    	 logger.info("3. Users");
     }
 
     
