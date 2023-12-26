@@ -24,12 +24,13 @@ public class SystemUI {
 	
     // Private constructor to prevent instantiation from outside the class
     public SystemUI() {
-
-    	Product p1 = new Product("prod1", "exterior", "-", 20.0);
-    	Product p2 = new Product("prod2", "interior", "-", 30.0);
-    	Product p3 = new Product("prod3", "exterior", "-", 45.0);
-    	Product p4 = new Product("prod4", "exterior", "-", 190.0);
-    	Product p5 = new Product("prod5", "interior", "-", 115.0);
+    	String exterior = "exterior";
+    	String interior = "interior";
+    	Product p1 = new Product("prod1", exterior, "-", 20.0);
+    	Product p2 = new Product("prod2", interior, "-", 30.0);
+    	Product p3 = new Product("prod3", exterior, "-", 45.0);
+    	Product p4 = new Product("prod4", exterior, "-", 190.0);
+    	Product p5 = new Product("prod5", interior, "-", 115.0);
     	p3.canbeinstalled();
     	p5.canbeinstalled();
     	allproducts.add(p1);
@@ -63,12 +64,13 @@ public class SystemUI {
     	i1.setAsInstaller();
     	i2.setAsInstaller();
     	i3.setAsInstaller();
-    	i1.addinstallerdates("2023-12-05");
+    	String workDay = "2023-12-05";
+    	i1.addinstallerdates(workDay);
     	i1.addinstallerdates("2023-12-07");
     	i1.addinstallerdates("2023-12-09");
-    	i2.addinstallerdates("2023-12-05");
+    	i2.addinstallerdates(workDay);
     	i2.addinstallerdates("2023-12-15");
-    	i3.addinstallerdates("2023-12-05");
+    	i3.addinstallerdates(workDay);
     	allinstallers.add(i1);
     	allinstallers.add(i2);
     	allinstallers.add(i3);
@@ -277,6 +279,7 @@ public class SystemUI {
     	printstr = "total: " + sum + "$";
     	logger.info(printstr);
     }
+    String For = " for ";
     public void installersportal() {
     	String printstr = "";
     	logger.info("\n");
@@ -285,7 +288,7 @@ public class SystemUI {
     	logger.info(printstr);
     	
     	for(int i = 0; i < myrequests.size(); i++) {
-    		printstr = (i+1) +") "+ myrequests.get(i).getInstallationdate() + ": " + "install " + myrequests.get(i).getPart().getName() + " for " + myrequests.get(i).getCarmodel()
+    		printstr = (i+1) +") "+ myrequests.get(i).getInstallationdate() + ": " + "install " + myrequests.get(i).getPart().getName() + For + myrequests.get(i).getCarmodel()
     				+ ", Requested by " + myrequests.get(i).getCustomer().getUsername();
     		logger.info(printstr);
     	}
@@ -387,7 +390,7 @@ public class SystemUI {
     
     public void sendInstallationRequestNotification() {
     	String notif = "You have a new request from " + customer.getUsername() + " to install " + installableproducts.get(productforinstallation).getName() 
-    			+ " on " + installdate + " for " + carmodel;
+    			+ " on " + installdate + For + carmodel;
     	
     	sender.setReciepent(availibleinstallers.get(installerIndex).getEmail());
     	sender.sendEmail("New Installation Request", notif);
@@ -419,7 +422,7 @@ public class SystemUI {
     
     
     public void sendPurchaseConfirmationEmail() {
-    	String msg = "Thank you for your purchase!"+ "\nYou've ordered " + orderedproductname + " for " + orderedproductprice + "$";
+    	String msg = "Thank you for your purchase!"+ "\nYou've ordered " + orderedproductname + For + orderedproductprice + "$";
     	sender.setReciepent(sys.getEmail());
     	sender.sendEmail("Order Confirmation", msg);
     }
