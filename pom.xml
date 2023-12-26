@@ -20,11 +20,27 @@
     <version>0.8.8</version>
 </dependency>
   <dependency>
-<groupId>io.cucumber</groupId>
-<artifactId>cucumber-picocontainer</artifactId>
-<version>7.3.4</version>
-<scope>test</scope>
+	<groupId>io.cucumber</groupId>
+	<artifactId>cucumber-picocontainer</artifactId>
+	<version>7.3.4</version>
+	<scope>test</scope>
+  </dependency>
+  
+ <!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
+<dependency>
+    <groupId>javax.mail</groupId>
+    <artifactId>javax.mail-api</artifactId>
+    <version>1.5.5</version>
 </dependency>
+
+<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+<dependency>
+    <groupId>com.sun.mail</groupId>
+    <artifactId>javax.mail</artifactId>
+    <version>1.5.5</version>
+</dependency>
+
+
 
 <dependency>
 <groupId>io.cucumber</groupId>
@@ -44,18 +60,6 @@
 <version>7.3.4</version>
 <scope>test</scope>
 </dependency>
-
-<dependency>
-    <groupId>javax.mail</groupId>
-    <artifactId>javax.mail-api</artifactId>
-    <version>1.5.5</version>
-</dependency>
-<dependency>
-    <groupId>com.sun.mail</groupId>
-    <artifactId>javax.mail</artifactId>
-    <version>1.5.5</version>
-</dependency>
-
 
 </dependencies>
 </project>
