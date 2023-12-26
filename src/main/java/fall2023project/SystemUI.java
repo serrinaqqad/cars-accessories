@@ -186,7 +186,8 @@ public class SystemUI {
         logger.info("\n---------------------");
     }
     public void deletecategory(String currentcategory) {
-    	logger.info("you've selected: "+ currentcategory);
+    	String printstr = "you've selected: "+ currentcategory; 
+    	logger.info(printstr);
     	for(int i = allproducts.size()-1; i >= 0; i--) {
 	    	if(allproducts.get(i).getCategory().equalsIgnoreCase(currentcategory))
 	    		allproducts.remove(i);
@@ -273,13 +274,16 @@ public class SystemUI {
     		logger.info(printstr);
     		sum = sum + myorders.get(i).getProduct().getPrice();
     	}
-    	logger.info("total: " + sum + "$");
+    	printstr = "total: " + sum + "$";
+    	logger.info(printstr);
     }
     public void installersportal() {
+    	String printstr = "";
     	logger.info("\n");
     	logger.info("---------INSTALLER'S PORTAL---------");
-    	logger.info("REQUESTS("+myrequests.size()+ "): ");
-    	String printstr = "";
+    	printstr = "REQUESTS("+myrequests.size()+ "): ";
+    	logger.info(printstr);
+    	
     	for(int i = 0; i < myrequests.size(); i++) {
     		printstr = (i+1) +") "+ myrequests.get(i).getInstallationdate() + ": " + "install " + myrequests.get(i).getPart().getName() + " for " + myrequests.get(i).getCarmodel()
     				+ ", Requested by " + myrequests.get(i).getCustomer().getUsername();
