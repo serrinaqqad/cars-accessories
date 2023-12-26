@@ -279,7 +279,7 @@ public class SystemUI {
     	printstr = "total: " + sum + "$";
     	logger.info(printstr);
     }
-    String For = " for ";
+    String ffor = " for ";
     public void installersportal() {
     	String printstr = "";
     	logger.info("\n");
@@ -288,7 +288,7 @@ public class SystemUI {
     	logger.info(printstr);
     	
     	for(int i = 0; i < myrequests.size(); i++) {
-    		printstr = (i+1) +") "+ myrequests.get(i).getInstallationdate() + ": " + "install " + myrequests.get(i).getPart().getName() + For + myrequests.get(i).getCarmodel()
+    		printstr = (i+1) +") "+ myrequests.get(i).getInstallationdate() + ": " + "install " + myrequests.get(i).getPart().getName() + ffor + myrequests.get(i).getCarmodel()
     				+ ", Requested by " + myrequests.get(i).getCustomer().getUsername();
     		logger.info(printstr);
     	}
@@ -390,7 +390,7 @@ public class SystemUI {
     
     public void sendInstallationRequestNotification() {
     	String notif = "You have a new request from " + customer.getUsername() + " to install " + installableproducts.get(productforinstallation).getName() 
-    			+ " on " + installdate + For + carmodel;
+    			+ " on " + installdate + ffor + carmodel;
     	
     	sender.setReciepent(availibleinstallers.get(installerIndex).getEmail());
     	sender.sendEmail("New Installation Request", notif);
@@ -422,7 +422,7 @@ public class SystemUI {
     
     
     public void sendPurchaseConfirmationEmail() {
-    	String msg = "Thank you for your purchase!"+ "\nYou've ordered " + orderedproductname + For + orderedproductprice + "$";
+    	String msg = "Thank you for your purchase!"+ "\nYou've ordered " + orderedproductname + ffor + orderedproductprice + "$";
     	sender.setReciepent(sys.getEmail());
     	sender.sendEmail("Order Confirmation", msg);
     }

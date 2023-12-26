@@ -2,7 +2,7 @@ package fall2023project;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class Catalog {
     private List<Product> products = new ArrayList<>();
