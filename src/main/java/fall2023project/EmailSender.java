@@ -6,8 +6,12 @@ import java.util.Properties;
 import java.util.logging.Logger;
 public class EmailSender {
 	Logger logger = Logger.getLogger(getClass().getName());
-	public EmailSender() {
-		
+	String reciepentEmail;
+	public EmailSender(String reciepent) {
+		reciepentEmail = reciepent;
+	}
+	public void setReciepent(String r) {
+		reciepentEmail = r;
 	}
 	
     public void sendEmail(String email_subject, String email_message) {

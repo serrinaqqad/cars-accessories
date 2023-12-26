@@ -20,7 +20,7 @@ public class SystemUI {
 	private double pr;
 	private User customer = new User("name1", "example1@gmail.com", "32424");
 	private User installer = new User("inst1", "example2@gmail.com", "adfdag");
-	EmailSender sender = new EmailSender();
+	EmailSender sender = new EmailSender("example@mailsystem.com");
 	
     // Private constructor to prevent instantiation from outside the class
     public SystemUI() {
@@ -377,16 +377,19 @@ public class SystemUI {
     	}
     }
     
+    int installerIndex = 0;
     public void confirmrequest(int i) {
     	customerrequest = new InstallationRequest(customer, availibleinstallers.get(i), carmodel,installableproducts.get(productforinstallation),installdate);
     	logger.info("installation request submitted successfully");
     	myrequests.add(currentrequest);
-    	
+    	installerIndex = i;
     }
     
     public void sendInstallationRequestNotification() {
     	String notif = "You have a new request from " + customer.getUsername() + " to install " + installableproducts.get(productforinstallation).getName() 
     			+ " on " + installdate + " for " + carmodel;
+    	
+    	sender.setReciepent(availibleinstallers.get(installerIndex).getEmail());
     	sender.sendEmail("New Installation Request", notif);
     }
     
@@ -417,6 +420,7 @@ public class SystemUI {
     
     public void sendPurchaseConfirmationEmail() {
     	String msg = "Thank you for your purchase!"+ "\nYou've ordered " + orderedproductname + " for " + orderedproductprice + "$";
+    	sender.setReciepent(sys.getEmail());
     	sender.sendEmail("Order Confirmation", msg);
     }
     
