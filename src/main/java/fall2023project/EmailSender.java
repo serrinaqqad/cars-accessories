@@ -3,10 +3,11 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
-
+import java.util.logging.Logger;
 public class EmailSender {
-	
+	Logger logger = Logger.getLogger(getClass().getName());
 	public EmailSender() {
+		
 	}
 	
     public void sendEmail(String email_subject, String email_message) {
@@ -15,7 +16,7 @@ public class EmailSender {
         String senderPassword = System.getenv("SENDER_PASSWORD");
         String recipientEmail = "recipient@example.com";
         if (senderEmail == null || senderPassword == null) {
-            System.err.println("Sender email or password not provided in environment variables.");
+        	logger.info("Sender email or password not provided in environment variables.");
             return;
         }
 
@@ -49,7 +50,7 @@ public class EmailSender {
             message.setText(email_message);
             Transport.send(message);
 
-            System.out.println("Email sent successfully!");
+            logger.info("Email sent successfully!");
 
         } catch (MessagingException e) {
             e.printStackTrace();

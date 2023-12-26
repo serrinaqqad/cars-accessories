@@ -2,7 +2,6 @@ package fall2023project;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-//import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class SystemUI {
@@ -86,90 +85,88 @@ public class SystemUI {
     
     
     public void readproductdata(String n, String c, String d, double p) {
-    	System.out.println("to add product, enter product data:");
+    	logger.info("to add product, enter product data:");
         
-    	System.out.println("product name: ");
-    	System.out.println(n + "\n");
+    	logger.info("product name: ");
+    	logger.info(n + "\n");
         name = n;  
-    	System.out.println("product category: ");
-    	System.out.println(c + "\n");
+        logger.info("product category: ");
+        logger.info(c + "\n");
     	cat = c;
-    	System.out.println("product description: ");
-    	System.out.println(d + "\n");
+    	logger.info("product description: ");
+    	logger.info(d + "\n");
     	desc = d;
-    	System.out.println("product price: ");
-    	System.out.println(p + "\n");
+    	logger.info("product price: ");
+    	logger.info(p + "\n");
     	pr = p;
- 
     }
     
     public void addproduct() {
         sel = new Product(name, cat, desc, pr);
         allproducts.add(sel);
         String prints = name + " has been added to system!";
-        System.out.println(prints);
+        logger.info(prints);
     }
 
     public void printproducts() {
         String prints;
-        System.out.println("\n--------- PRODUCTS ------------");
+        logger.info("\n--------- PRODUCTS ------------");
         for (int i = 0; i < allproducts.size(); i++) {
             prints = (i + 1) + "." + " " + allproducts.get(i).getName();
-            System.out.println(prints);
+            logger.info(prints);
         }
-        System.out.println("--------------------------");
+        logger.info("--------------------------");
     }
 
     public void manageproducts() {
-    	System.out.println("\n\n--------------------------");
-        System.out.println("press * to add a new product or select an item from the list \n to delete it or update it");
+    	logger.info("\n\n--------------------------");
+    	logger.info("press * to add a new product or select an item from the list \n to delete it or update it");
         printproducts();
     }
     int currentproductindex = 0;
     
 
-   // private String updatedelete = null;
     public void readproduct(int r) {
     	currentproductindex = r - 1;
-    	System.out.println("you've selected " + allproducts.get(currentproductindex).getName()+ ", would you like to:");
-    	System.out.println("1. Update product");
-    	System.out.println("2. Delete product");
-    	System.out.println("3. Cancel");
+    	logger.info("you've selected " + allproducts.get(currentproductindex).getName()+ ", would you like to:");
+    	logger.info("1. Update product");
+    	logger.info("2. Delete product");
+    	logger.info("3. Cancel");
     }
     
     public void deleteproduct() {
     	String pname = allproducts.get(currentproductindex).getName();
     	allproducts.remove(currentproductindex);
-    	System.out.println("deleted " + pname + " successfully" );
+    	logger.info("deleted " + pname + " successfully" );
     	this.printproducts();
     }
     
     
     public void updateordelete(int choice) {
     	if(choice == 1) {
-    		System.out.println("your choice is Update");
+    		logger.info("your choice is Update");
     	}
     	else if(choice == 2) {
-    		System.out.println("your choice is delete");
+    		logger.info("your choice is delete");
     	}
     	else
-    		System.out.println("operation canceled");
+    		logger.info("operation canceled");
     }
     public void updateproduct(String n, String c, String d, double p) {
     	name = allproducts.get(currentproductindex).getName();
     	cat = allproducts.get(currentproductindex).getCategory();
     	desc = allproducts.get(currentproductindex).getDescription();
     	pr = allproducts.get(currentproductindex).getPrice();
-    	System.out.println("old data: " + name + ", " + cat + ", " + desc + ", "+ pr);
+    	logger.info("old data: " + name + ", " + cat + ", " + desc + ", "+ pr);
     	allproducts.get(currentproductindex).setName(n);
     	allproducts.get(currentproductindex).setDescription(d);
     	allproducts.get(currentproductindex).setCategory(c);
     	allproducts.get(currentproductindex).setPrice(p);
-    	System.out.println("product updated! \nnew data: " + n + ", " + c + ", " + d + ", "+ p);
+    	logger.info("product updated! \nnew data: " + n + ", " + c + ", " + d + ", "+ p);
     }
 
     public void allcategories() {
-    	System.out.println("\n--------- CATEGORIES ------------");
+    	logger.info("\n--------- CATEGORIES ------------");
         allcategories = allproducts.stream()
                 .map(Product::getCategory)
                 .distinct()
@@ -177,67 +174,67 @@ public class SystemUI {
         String prints;
         for (int i = 0; i < allcategories.size(); i++) {
             prints = (i + 1) + "." + " " + allcategories.get(i);
-            System.out.println(prints);
+            logger.info(prints);
             
         }
-        System.out.println("\n---------------------");
+        logger.info("\n---------------------");
     }
     public void deletecategory(String currentcategory) {
-    	System.out.println("you've selected: "+ currentcategory);
+    	logger.info("you've selected: "+ currentcategory);
     	for(int i = 0; i < allproducts.size(); i++) {
 	    	if(allproducts.get(i).getCategory().equalsIgnoreCase(currentcategory))
 	    		allproducts.remove(i);
 	    }
-    	System.out.println(currentcategory + " was deleted with all associated products");
+    	logger.info(currentcategory + " was deleted with all associated products");
     	this.printproducts();
     	this.allcategories();
     }
     
     public void usermanagement() {
     	String printu;
-    	System.out.println("\n--------- SYSTEM USERS ------------");
+    	logger.info("\n--------- SYSTEM USERS ------------");
     	for (int i = 0; i < allusers.size(); i++) {
             printu = (i + 1) + "." + " " + allusers.get(i).getUsername() + ": " + allusers.get(i).getEmail();
             System.out.println(printu);
         }
-        System.out.println("--------------------------");
+    	logger.info("--------------------------");
     }
     User selected;
     int curruser;
     public void selectuser(int index) {
     	selected = new User(allusers.get(index).getUsername(),allusers.get(index).getEmail(), allusers.get(index).getPassword());
     	curruser = index - 1;
-    	System.out.println("You selected user " + allusers.get(curruser).getUsername());
+    	logger.info("You selected user " + allusers.get(curruser).getUsername());
     }
     
     public void deleteuser() {
-    	System.out.println("user "+ allusers.get(curruser).getUsername()+ " has been removed from system");
+    	logger.info("user "+ allusers.get(curruser).getUsername()+ " has been removed from system");
     	allusers.remove(curruser);
     	this.usermanagement();
     }
     
     //----------------------- CUSTOMERS --------------------------------------
     public void customerportal() {
-    	System.out.println();
-    	System.out.println("--------- CUSTOMER'S PORTAL ---------");
-    	System.out.println("1. browse products");
-    	System.out.println("2. my orders");
-    	System.out.println("3. request product installation");
-    	System.out.println("4. edit profile");
+    	logger.info("\n");
+    	logger.info("--------- CUSTOMER'S PORTAL ---------");
+    	logger.info("1. browse products");
+    	logger.info("2. my orders");
+    	logger.info("3. request product installation");
+    	logger.info("4. edit profile");
     }
     public void browseproducts() {
     	String prodline;
     	for(int i = 0; i < allproducts.size(); i++) {
     		prodline = (i+1) + ". " + allproducts.get(i).getName() + ": " + "\ncategory:" + allproducts.get(i).getCategory()
     				+ "   price:" + allproducts.get(i).getPrice() + "$" + "\n" + allproducts.get(i).getDescription();
-    	System.out.println(prodline);
+    		logger.info(prodline);
     	}
     }
     int index;
     public void selectproduct(int i) {
     	index = i - 1;
-    	System.out.println("selected: " + allproducts.get(index).getName());
-    	System.out.println("order product? yes/no");
+    	logger.info("selected: " + allproducts.get(index).getName());
+    	logger.info("order product? yes/no");
     }
     
     String orderedproductname;
@@ -246,7 +243,7 @@ public class SystemUI {
     public void orderproduct() {
     	Order arbt = new Order(allproducts.get(index), customer);
     	myorders.add(arbt);
-    	System.out.println("order for " +arbt.getProduct().getName()+ " has been placed.");
+    	logger.info("order for " +arbt.getProduct().getName()+ " has been placed.");
     	orderplaced = true;
     	orderedproductname = allproducts.get(index).getName();
     	orderedproductprice = allproducts.get(index).getPrice();
@@ -258,28 +255,28 @@ public class SystemUI {
     
     public void vieworders() {
     	Double sum = 0.0;
-    	System.out.println("-------MY ORDERS-------");
+    	logger.info("-------MY ORDERS-------");
     	for(int i = 0; i < myorders.size(); i++) {
-    		System.out.println(myorders.get(i).getProduct().getName() + " - " + myorders.get(i).getProduct().getPrice() + "$, " + myorders.get(i).getOrdertime());
+    		logger.info(myorders.get(i).getProduct().getName() + " - " + myorders.get(i).getProduct().getPrice() + "$, " + myorders.get(i).getOrdertime());
     		sum = sum + myorders.get(i).getProduct().getPrice();
     	}
-    	System.out.println("total: " + sum + "$");
+    	logger.info("total: " + sum + "$");
     }
     public void installersportal() {
-    	System.out.println();
-    	System.out.println("---------INSTALLER'S PORTAL---------");
-    	System.out.println("REQUESTS("+myrequests.size()+ "): ");
+    	logger.info("\n");
+    	logger.info("---------INSTALLER'S PORTAL---------");
+    	logger.info("REQUESTS("+myrequests.size()+ "): ");
     	for(int i = 0; i < myrequests.size(); i++) {
-    		System.out.println((i+1) +") "+ myrequests.get(i).getInstallationdate() + ": " + "install " + myrequests.get(i).getPart().getName() + " for " + myrequests.get(i).getCarmodel()
+    		logger.info((i+1) +") "+ myrequests.get(i).getInstallationdate() + ": " + "install " + myrequests.get(i).getPart().getName() + " for " + myrequests.get(i).getCarmodel()
     				+ ", Requested by " + myrequests.get(i).getCustomer().getUsername());
     	}
     }
     int requestindex = 0;
     InstallationRequest currentrequest;
     public void selectrequest(int r) {
-    	System.out.println("Your choice: " + r);
+    	logger.info("Your choice: " + r);
     	currentrequest = new InstallationRequest(myrequests.get(r).getCustomer(),myrequests.get(r).getInstaller(),myrequests.get(r).getCarmodel(),myrequests.get(r).getPart(),myrequests.get(r).getInstallationdate());
-    	System.out.println("accept request? y/n");
+    	logger.info("accept request? y/n");
     	requestindex = r;
     }
     public void acceptrequest() {
@@ -288,7 +285,7 @@ public class SystemUI {
     public void addappointment() {
     	List<InstallationRequest> appointments = new ArrayList<InstallationRequest>();
     	appointments.add(currentrequest);
-    	System.out.println("request has been accepted and added to appointments");
+    	logger.info("request has been accepted and added to appointments");
     	myrequests.remove(requestindex);
     }
     public void declinerequest() {
@@ -297,16 +294,16 @@ public class SystemUI {
     
     public void deleterequest() {
     	myrequests.remove(requestindex);
-    	System.out.println("request #"+requestindex+" has been declined and removed.");
+    	logger.info("request #"+requestindex+" has been declined and removed.");
     	installersportal();
     }
     
     public void getRequestInstallationMenu() {
-    	System.out.println("Products availible for installation: ");
+    	logger.info("Products availible for installation: ");
     	String prodline;
     	for(int i = 0; i < installableproducts.size(); i++) {
     		prodline = (i+1) + ". " + installableproducts.get(i).getName();
-    	System.out.println(prodline);
+    		logger.info(prodline);
     	}
     }
     
@@ -320,10 +317,10 @@ public class SystemUI {
     private String installdate;
     private String carmodel;
     public void readdataforinstallation(String car, String date) {
-    	System.out.println("You want to install product "+ installableproducts.get(currentproductindex).getName()+"\nto proceed enter your car model:");
-    	System.out.println(car);
-    	System.out.println("enter preffered date for installation in the format:yyyy-MM-dd");
-    	System.out.println(date);
+    	logger.info("You want to install product "+ installableproducts.get(currentproductindex).getName()+"\nto proceed enter your car model:");
+    	logger.info(car);
+    	logger.info("enter preffered date for installation in the format:yyyy-MM-dd");
+    	logger.info(date);
     	installdate = date;
     	carmodel= car;
     }
@@ -334,7 +331,7 @@ public class SystemUI {
     		for(int j = 0; j < allinstallers.get(i).getinstallerdates().size(); j++) {
     		    if(allinstallers.get(i).getinstallerdates().get(j).equals(installdate)) {
     		    	availibleinstallers.add(allinstallers.get(i));
-    		    	System.out.println((i+1)+". " + allinstallers.get(i).getUsername() +" is availible on "+installdate);
+    		    	logger.info((i+1)+". " + allinstallers.get(i).getUsername() +" is availible on "+installdate);
     		    	count++;
     		    }
         	}
@@ -343,20 +340,20 @@ public class SystemUI {
     
     public void noinstallersmessage() {
     	if(count == 0) {
-    		System.out.println("no installers availible for this date.");
-    		System.out.println("you can choose from these dates: ");
+    		logger.info("no installers availible for this date.");
+    		logger.info("you can choose from these dates: ");
     		for(int i = 0; i < allinstallers.size(); i++) {
         		for(int j = 0; j < allinstallers.get(i).getinstallerdates().size(); j++) {
-        		    System.out.println(allinstallers.get(i).getinstallerdates().get(j)+": "+ allinstallers.get(i).getUsername());
+        			logger.info(allinstallers.get(i).getinstallerdates().get(j)+": "+ allinstallers.get(i).getUsername());
             	}
         	}
-    		System.out.println("cancel? yes/no: ");
+    		logger.info("cancel? yes/no: ");
     	}
     }
     
     public void confirmrequest(int i) {
     	customerrequest = new InstallationRequest(customer, availibleinstallers.get(i), carmodel,installableproducts.get(productforinstallation),installdate);
-    	System.out.println("installation request submitted successfully");
+    	logger.info("installation request submitted successfully");
     	myrequests.add(currentrequest);
     	
     }
@@ -372,23 +369,23 @@ public class SystemUI {
     User sys = new User("user1", "sys@example.com", "123bde45e6");
 	Profile myprofile = new Profile(sys, "+970123432", "Nablus, Palestine");
     public void editProfileScreen() {
-    	System.out.println("\tMY PROFILE: ");
-    	System.out.println("\t"+ sys.getUsername());
-    	System.out.println("\tEmail: " + myprofile.getEmail());
-    	System.out.println("\tPhone number: " + myprofile.getPhoneNumber());
-    	System.out.println("\tAddress: " + myprofile.getAddress());
-    	System.out.println();
+    	logger.info("\tMY PROFILE: ");
+    	logger.info("\t"+ sys.getUsername());
+    	logger.info("\tEmail: " + myprofile.getEmail());
+    	logger.info("\tPhone number: " + myprofile.getPhoneNumber());
+    	logger.info("\tAddress: " + myprofile.getAddress());
+    	logger.info("\n");
     }
     public void updateuserprofile(String email, String phonenumber, String address) {
     	myprofile.setEmail(email);
     	myprofile.setAddress(address);
     	myprofile.setPhoneNumber(phonenumber);
-    	System.out.println("\tupdated data: ");
-    	System.out.println("\t"+sys.getUsername());
-    	System.out.println("\tEmail: " + myprofile.getEmail());
-    	System.out.println("\tPhone number: " + myprofile.getPhoneNumber());
-    	System.out.println("\tAddress: " + myprofile.getAddress());
-    	System.out.println();
+    	logger.info("\tupdated data: ");
+    	logger.info("\t"+sys.getUsername());
+    	logger.info("\tEmail: " + myprofile.getEmail());
+    	logger.info("\tPhone number: " + myprofile.getPhoneNumber());
+    	logger.info("\tAddress: " + myprofile.getAddress());
+    	logger.info("\n");
     }
     
     
