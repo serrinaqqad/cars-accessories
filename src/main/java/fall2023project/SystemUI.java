@@ -86,18 +86,21 @@ public class SystemUI {
     
     public void readproductdata(String n, String c, String d, double p) {
     	logger.info("to add product, enter product data:");
-        
+        String printmsg = n+"\n";
     	logger.info("product name: ");
-    	logger.info(n + "\n");
+    	logger.info(printmsg);
         name = n;  
         logger.info("product category: ");
-        logger.info(c + "\n");
+        printmsg = c+"\n";
+        logger.info(printmsg);
     	cat = c;
     	logger.info("product description: ");
-    	logger.info(d + "\n");
+    	printmsg = d+"\n";
+    	logger.info(printmsg);
     	desc = d;
     	logger.info("product price: ");
-    	logger.info(p + "\n");
+    	printmsg = p+"\n";
+    	logger.info(printmsg);
     	pr = p;
     }
     
@@ -137,7 +140,8 @@ public class SystemUI {
     public void deleteproduct() {
     	String pname = allproducts.get(currentproductindex).getName();
     	allproducts.remove(currentproductindex);
-    	logger.info("deleted " + pname + " successfully" );
+    	String prntmsg = "deleted " + pname + " successfully";
+    	logger.info(prntmsg);
     	this.printproducts();
     }
     
@@ -157,12 +161,14 @@ public class SystemUI {
     	cat = allproducts.get(currentproductindex).getCategory();
     	desc = allproducts.get(currentproductindex).getDescription();
     	pr = allproducts.get(currentproductindex).getPrice();
-    	logger.info("old data: " + name + ", " + cat + ", " + desc + ", "+ pr);
+    	String printmessage = "old data: " + name + ", " + cat + ", " + desc + ", "+ pr;
+    	logger.info(printmessage);
     	allproducts.get(currentproductindex).setName(n);
     	allproducts.get(currentproductindex).setDescription(d);
     	allproducts.get(currentproductindex).setCategory(c);
     	allproducts.get(currentproductindex).setPrice(p);
-    	logger.info("product updated! \nnew data: " + n + ", " + c + ", " + d + ", "+ p);
+    	printmessage = "product updated! \nnew data: " + n + ", " + c + ", " + d + ", "+ p;
+    	logger.info(printmessage);
     }
 
     public void allcategories() {
@@ -185,7 +191,8 @@ public class SystemUI {
 	    	if(allproducts.get(i).getCategory().equalsIgnoreCase(currentcategory))
 	    		allproducts.remove(i);
 	    }
-    	logger.info(currentcategory + " was deleted with all associated products");
+    	String printmessage = currentcategory + " was deleted with all associated products";
+    	logger.info(printmessage);
     	this.printproducts();
     	this.allcategories();
     }
@@ -204,11 +211,13 @@ public class SystemUI {
     public void selectuser(int index) {
     	selected = new User(allusers.get(index).getUsername(),allusers.get(index).getEmail(), allusers.get(index).getPassword());
     	curruser = index - 1;
-    	logger.info("You selected user " + allusers.get(curruser).getUsername());
+    	String printstring = "You selected user " + allusers.get(curruser).getUsername(); 
+    	logger.info(printstring);
     }
     
     public void deleteuser() {
-    	logger.info("user "+ allusers.get(curruser).getUsername()+ " has been removed from system");
+    	String printstr = "user "+ allusers.get(curruser).getUsername()+ " has been removed from system";
+    	logger.info(printstr);
     	allusers.remove(curruser);
     	this.usermanagement();
     }
@@ -233,7 +242,8 @@ public class SystemUI {
     int index;
     public void selectproduct(int i) {
     	index = i - 1;
-    	logger.info("selected: " + allproducts.get(index).getName());
+    	String printstr = "selected: " + allproducts.get(index).getName();
+    	logger.info(printstr);
     	logger.info("order product? yes/no");
     }
     
@@ -243,7 +253,8 @@ public class SystemUI {
     public void orderproduct() {
     	Order arbt = new Order(allproducts.get(index), customer);
     	myorders.add(arbt);
-    	logger.info("order for " +arbt.getProduct().getName()+ " has been placed.");
+    	String printstr = "order for " +arbt.getProduct().getName()+ " has been placed."; 
+    	logger.info(printstr);
     	orderplaced = true;
     	orderedproductname = allproducts.get(index).getName();
     	orderedproductprice = allproducts.get(index).getPrice();
@@ -256,8 +267,10 @@ public class SystemUI {
     public void vieworders() {
     	Double sum = 0.0;
     	logger.info("-------MY ORDERS-------");
+    	String printstr = "";
     	for(int i = 0; i < myorders.size(); i++) {
-    		logger.info(myorders.get(i).getProduct().getName() + " - " + myorders.get(i).getProduct().getPrice() + "$, " + myorders.get(i).getOrdertime());
+    		printstr = myorders.get(i).getProduct().getName() + " - " + myorders.get(i).getProduct().getPrice() + "$, " + myorders.get(i).getOrdertime();
+    		logger.info(printstr);
     		sum = sum + myorders.get(i).getProduct().getPrice();
     	}
     	logger.info("total: " + sum + "$");
@@ -266,15 +279,18 @@ public class SystemUI {
     	logger.info("\n");
     	logger.info("---------INSTALLER'S PORTAL---------");
     	logger.info("REQUESTS("+myrequests.size()+ "): ");
+    	String printstr = "";
     	for(int i = 0; i < myrequests.size(); i++) {
-    		logger.info((i+1) +") "+ myrequests.get(i).getInstallationdate() + ": " + "install " + myrequests.get(i).getPart().getName() + " for " + myrequests.get(i).getCarmodel()
-    				+ ", Requested by " + myrequests.get(i).getCustomer().getUsername());
+    		printstr = (i+1) +") "+ myrequests.get(i).getInstallationdate() + ": " + "install " + myrequests.get(i).getPart().getName() + " for " + myrequests.get(i).getCarmodel()
+    				+ ", Requested by " + myrequests.get(i).getCustomer().getUsername();
+    		logger.info(printstr);
     	}
     }
     int requestindex = 0;
     InstallationRequest currentrequest;
     public void selectrequest(int r) {
-    	logger.info("Your choice: " + r);
+    	String printstr = "Your choice: " + r;
+    	logger.info(printstr);
     	currentrequest = new InstallationRequest(myrequests.get(r).getCustomer(),myrequests.get(r).getInstaller(),myrequests.get(r).getCarmodel(),myrequests.get(r).getPart(),myrequests.get(r).getInstallationdate());
     	logger.info("accept request? y/n");
     	requestindex = r;
@@ -294,7 +310,8 @@ public class SystemUI {
     
     public void deleterequest() {
     	myrequests.remove(requestindex);
-    	logger.info("request #"+requestindex+" has been declined and removed.");
+    	String printstr = "request #"+requestindex+" has been declined and removed."; 
+    	logger.info(printstr);
     	installersportal();
     }
     
@@ -317,7 +334,8 @@ public class SystemUI {
     private String installdate;
     private String carmodel;
     public void readdataforinstallation(String car, String date) {
-    	logger.info("You want to install product "+ installableproducts.get(currentproductindex).getName()+"\nto proceed enter your car model:");
+    	String printstr = "You want to install product "+ installableproducts.get(currentproductindex).getName()+"\nto proceed enter your car model:"; 
+    	logger.info(printstr);
     	logger.info(car);
     	logger.info("enter preffered date for installation in the format:yyyy-MM-dd");
     	logger.info(date);
@@ -327,11 +345,13 @@ public class SystemUI {
     int count = 0;
     private List<User> availibleinstallers = new ArrayList<User>();
     public void getavailibleinstallers() {
+    	String printstr = "";
     	for(int i = 0; i < allinstallers.size(); i++) {
     		for(int j = 0; j < allinstallers.get(i).getinstallerdates().size(); j++) {
     		    if(allinstallers.get(i).getinstallerdates().get(j).equals(installdate)) {
     		    	availibleinstallers.add(allinstallers.get(i));
-    		    	logger.info((i+1)+". " + allinstallers.get(i).getUsername() +" is availible on "+installdate);
+    		    	printstr = (i+1)+". " + allinstallers.get(i).getUsername() +" is availible on "+installdate;
+    		    	logger.info(printstr);
     		    	count++;
     		    }
         	}
@@ -339,12 +359,14 @@ public class SystemUI {
     }
     
     public void noinstallersmessage() {
+    	String printstr = "";
     	if(count == 0) {
     		logger.info("no installers availible for this date.");
     		logger.info("you can choose from these dates: ");
     		for(int i = 0; i < allinstallers.size(); i++) {
         		for(int j = 0; j < allinstallers.get(i).getinstallerdates().size(); j++) {
-        			logger.info(allinstallers.get(i).getinstallerdates().get(j)+": "+ allinstallers.get(i).getUsername());
+        			printstr = allinstallers.get(i).getinstallerdates().get(j)+": "+ allinstallers.get(i).getUsername();
+        			logger.info(printstr);
             	}
         	}
     		logger.info("cancel? yes/no: ");
