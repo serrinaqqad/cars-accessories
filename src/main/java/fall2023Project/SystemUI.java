@@ -177,8 +177,7 @@ public class SystemUI {
     	logger.info("\n--------- CATEGORIES ------------");
         allcategories = allproducts.stream()
                 .map(Product::getCategory)
-                .distinct()
-                .collect(Collectors.toList());
+                .distinct().toList();
         String prints;
         for (int i = 0; i < allcategories.size(); i++) {
             prints = (i + 1) + "." + " " + allcategories.get(i);
