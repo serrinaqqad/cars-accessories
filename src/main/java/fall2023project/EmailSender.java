@@ -57,7 +57,7 @@ public class EmailSender {
             logger.info("Email sent successfully!");
 
         } catch (MessagingException e) {
-            e.printStackTrace();
+        	logger.info("********* Failed to send Email **********");
         }
     }
 }
