@@ -1,9 +1,12 @@
-package fall2023project;
+package fall2023Project;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import static org.junit.Assert.*;
+
+import fall2023Project.RegistrationService;
+import fall2023Project.User;
 
 public class UserRegistrationSteps {
     private RegistrationService registrationService;

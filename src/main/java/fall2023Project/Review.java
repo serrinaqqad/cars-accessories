@@ -1,4 +1,4 @@
-package fall2023project;
+package fall2023Project;
 
 public class Review {
  private String title;

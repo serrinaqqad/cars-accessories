@@ -1,4 +1,4 @@
-package fall2023project;
+package fall2023Project;
 
 import java.util.HashMap;
 import java.util.Map;

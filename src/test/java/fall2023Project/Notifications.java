@@ -1,4 +1,5 @@
-package fall2023project;
+package fall2023Project;
+import fall2023Project.SystemUI;
 import io.cucumber.java.en.Then;
 
 public class Notifications {

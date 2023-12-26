@@ -1,5 +1,6 @@
-package fall2023project;
+package fall2023Project;
 
+import fall2023Project.SystemUI;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

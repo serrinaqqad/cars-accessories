@@ -1,9 +1,13 @@
-package fall2023project;
+package fall2023Project;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import static org.junit.Assert.*;
+
+import fall2023Project.ProductDetailsPage;
+import fall2023Project.Review;
+import fall2023Project.ReviewService;
 
 public class ReviewsAndRatingsSteps {
     private ProductDetailsPage productDetailsPage;

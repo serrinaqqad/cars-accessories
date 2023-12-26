@@ -1,4 +1,4 @@
-package fall2023project;
+package fall2023Project;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;

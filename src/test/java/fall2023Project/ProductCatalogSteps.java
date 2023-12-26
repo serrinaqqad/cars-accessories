@@ -1,9 +1,13 @@
-package fall2023project;
+package fall2023Project;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import java.util.List;
+
+import fall2023Project.Catalog;
+import fall2023Project.Product;
+
 import static org.junit.Assert.*;
 
 public class ProductCatalogSteps {
