@@ -187,7 +187,7 @@ public class SystemUI {
     }
     public void deletecategory(String currentcategory) {
     	logger.info("you've selected: "+ currentcategory);
-    	for(int i = 0; i < allproducts.size(); i++) {
+    	for(int i = allproducts.size()-1; i >= 0; i--) {
 	    	if(allproducts.get(i).getCategory().equalsIgnoreCase(currentcategory))
 	    		allproducts.remove(i);
 	    }
@@ -202,7 +202,7 @@ public class SystemUI {
     	logger.info("\n--------- SYSTEM USERS ------------");
     	for (int i = 0; i < allusers.size(); i++) {
             printu = (i + 1) + "." + " " + allusers.get(i).getUsername() + ": " + allusers.get(i).getEmail();
-            System.out.println(printu);
+            logger.info(printu);
         }
     	logger.info("--------------------------");
     }
